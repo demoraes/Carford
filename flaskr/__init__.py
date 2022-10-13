@@ -37,10 +37,10 @@ def create_app(test_config=None):
 
     from . import client
     app.register_blueprint(client.bp)
-    app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/createClient', endpoint='index')
 
     from . import car
     app.register_blueprint(car.bp)
-    app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/createCar', endpoint='index')
 
     return app

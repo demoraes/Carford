@@ -39,14 +39,14 @@
       {% endfor %}
     </td>
     <td>
-      {% for client in clients %}
+      {% for car in cars %}
       <article class="post">
         <header>
           <div>
-            <p>ID: {{ client['id'] }}</p>
-            <p>Name: {{ client['name'] }}</p>
+            <p>ID: {{ car['id'] }}</p>
+            <p>Model: {{ car['model'] }}</p>
           </div>   
-          <a class="action" href="{{ url_for('client.update', id=client['id']) }}">Edit</a>
+          <a class="action" href="{{ url_for('car.update', id=car['id']) }}">Edit</a>
         </header>
       </article>
       {% if not loop.last %}

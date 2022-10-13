@@ -13,28 +13,35 @@ bp = Blueprint('car', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    clients = db.execute(
-        'SELECT * FROM client',
+    cars = db.execute(
+        'SELECT * FROM car',
     ).fetchall()
-    return render_template('index.html', clients=clients)
+    return render_template('index.html', cars=cars)
 
-
-@bp.route('/create', methods=('GET', 'POST'))
+@bp.route('/createCar', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
-        name = request.form['name']
+        model = request.form['model']
+        color = request.form['color']
+        client_id = request.form['client_id']
         error = None
 
-        if not name:
-            error = 'Name is required.'
+        if not model:
+            error = 'Model is required.'
+        
+        if not color:
+            error = 'Color is required.'
+
+        if not client_id:
+            error = 'Clientid is required.'
 
         if error is not None:
             flash(error)
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO client (name) VALUES (?)', (name,))
+                'INSERT INTO car (model,color,client_id) VALUES (?,?,?)', (model,color,client_id))
             db.commit()
             return redirect(url_for('car.index'))
 

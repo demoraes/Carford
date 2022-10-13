@@ -19,7 +19,7 @@ def index():
     return render_template('index.html', clients=clients)
 
 
-@bp.route('/create', methods=('GET', 'POST'))
+@bp.route('/createClient', methods=('GET', 'POST'))
 @login_required
 def create():
     if request.method == 'POST':
