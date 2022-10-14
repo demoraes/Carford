@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}New Car{% endblock %}</h1>
+<h1>{% block title %}New Car{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="model">Model</label>
-    <input name="model" id="model" value="{{ request.form['model'] }}" required>
-    <label for="color">Color</label>
-    <input name="color" id="color" value="{{ request.form['color'] }}" required>
-    <label for="client_id">Client_id</label>
-    <input name="client_id" id="client_id" value="{{ request.form['client_id'] }}" required>
-    <input type="submit" value="Save">
-  </form>
+<form method="post">
+  <label for="model">Model</label>
+  <input name="model" id="model" value="{{ request.form['model'] }}" required>
+  <label for="color">Color</label>
+  <select name="color">
+    {% for o in data %}
+    <option value="{{ o.name }}">{{ o.name }}</option>
+    {% endfor %}
+  </select>
+  <input type="hidden" name="client_id" id="client_id" value="{{ id }}" required>
+  <input type="submit" value="Save">
+</form>
 {% endblock %}

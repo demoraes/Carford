@@ -1,20 +1,35 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Edit "{{ clients['name'] }}"{% endblock %}</h1>
+  <h1>{% block title %}Edit "{{ cars['model'] }}"{% endblock %}</h1>
 {% endblock %}
+
+
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+client_id INTEGER NOT NULL,
+created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+model TEXT NOT NULL,
+color TEXT NOT NULL,
+FOREIGN KEY (client_id) REFERENCES client (id)
+
 
 {% block content %}
   <form method="post">
-    <label for="name">Name</label>
-    <input name="name" id="name"
-      value="{{ request.form['name'] or clients['name'] }}" required>
     <input type="hidden" name="id" id="id"
-      value="{{ request.form['id'] or clients['id'] }}" required>
+      value="{{ request.form['id'] or cars['id'] }}" required>
+    <label for="model">Model</label>
+    <input name="model" id="model"
+      value="{{ request.form['model'] or cars['model'] }}" required>
+    <label for="color">Color</label>
+    <input name="color" id="color"
+      value="{{ request.form['color'] or cars['color'] }}" required>
+    <label for="client_id">Client ID</label>
+    <input name="client_id" id="client_id"
+      value="{{ request.form['client_id'] or cars['client_id'] }}" required>
     <input type="submit" value="Save">
   </form>
   <hr>
-  <form action="{{ url_for('client.delete', id=clients['id']) }}" method="post">
+  <form action="{{ url_for('car.delete', id=cars['id']) }}" method="post">
     <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
   </form>
 {% endblock %}

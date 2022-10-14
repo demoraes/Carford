@@ -13,10 +13,24 @@ bp = Blueprint('client', __name__)
 @bp.route('/')
 def index():
     db = get_db()
-    clients = db.execute(
+    clients_cars = db.execute(
         'SELECT * FROM client',
     ).fetchall()
-    return render_template('index.html', clients=clients)
+
+    return render_template('index.html', clients_cars=clients_cars)
+
+
+@bp.route('/<int:id>/view', methods=('GET', 'POST'))
+@login_required
+def view(id):
+    cars = get_db().execute('SELECT model, color FROM car WHERE client_id = ?', (id,)).fetchall()
+
+    name = request.args.get('name')
+
+    if cars is None:
+        abort(404, f"Cars id {id} doesn't exist.")
+
+    return render_template('client/view.html', cars=cars, name=name)
 
 
 @bp.route('/createClient', methods=('GET', 'POST'))
@@ -41,7 +55,7 @@ def create():
     return render_template('client/create.html')
 
 
-def get_post(id):
+def get_clients(id):
     client = get_db().execute('SELECT * FROM client c WHERE id = ?', (id,)).fetchone()
 
     if client is None:
@@ -53,8 +67,7 @@ def get_post(id):
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
-    clients = get_post(id)
-    
+    clients = get_clients(id)
 
     if request.method == 'POST':
         name = request.form['name']
@@ -78,7 +91,7 @@ def update(id):
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
-    get_post(id)
+    get_clients(id)
     db = get_db()
     db.execute('DELETE FROM client WHERE id = ?', (id,))
     db.commit()

@@ -1,60 +1,31 @@
 {% extends 'base.html' %}
-
 {% block header %}
-
 <table>
   <tr>
     <td>
       {% if g.user %}
       <a class="action" href="{{ url_for('client.create') }}" style="margin-left: -10px;">New Client</a>
-      <a class="action" href="{{ url_for('car.create') }}" style="margin-left: -10px;">New Car</a>
       {% endif %}
     </td>
   </tr>
 </table>
-
 {% endblock %}
-
 {% block content %}
-<table>
-  <tr>
-    <td><h1>Clients</h1></td>
-    <td><h1>Cars</h1></td>
-  </tr>
-  <tr>
-    <td>
-      {% for client in clients %}
-      <article class="post">
-        <header>
-          <div>
-            <p>ID: {{ client['id'] }}</p>
-            <p>Name: {{ client['name'] }}</p>
-          </div>   
-          <a class="action" href="{{ url_for('client.update', id=client['id']) }}">Edit</a>
-        </header>
-      </article>
-      {% if not loop.last %}
-      <hr>
-      {% endif %}
-      {% endfor %}
-    </td>
-    <td>
-      {% for car in cars %}
-      <article class="post">
-        <header>
-          <div>
-            <p>ID: {{ car['id'] }}</p>
-            <p>Model: {{ car['model'] }}</p>
-          </div>   
-          <a class="action" href="{{ url_for('car.update', id=car['id']) }}">Edit</a>
-        </header>
-      </article>
-      {% if not loop.last %}
-      <hr>
-      {% endif %}
-      {% endfor %}
-    </td>
-  </tr>
-</table>
-
+<h1>Customer list</h1>
+{% for i in clients_cars %}
+<article class="post">
+  <header>
+    <div>
+      <p>ID Client: {{i['id']}}</p>
+      <p>Name: {{ i['name'] }}</p>
+      <a href="{{ url_for('client.update', id=i['id'])}}">Edit Name</a>
+      <a href="{{ url_for('client.view', name=i['name'], id=i['id'])}}">View Cars</a>
+      <a href="{{ url_for('car.create', id=i['id'])}}">New Car</a>
+    </div>
+  </header>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
 {% endblock %}

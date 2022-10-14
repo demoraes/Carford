@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}"{{ name }} Cars"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <table border="1px">
+        <tr>
+            <th>Modelo</th>
+            <th>Cor</th>
+            <th>Editar</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{car['model']}}</td>
+            <td>{{car['color']}}</td>
+            <td>Ação</td>     
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+<hr>
+{% endblock %}
