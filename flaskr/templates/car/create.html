@@ -7,11 +7,15 @@
 {% block content %}
 <form method="post">
   <label for="model">Model</label>
-  <input name="model" id="model" value="{{ request.form['model'] }}" required>
+  <select name="model">
+    {% for model in dataModel %}
+    <option value="{{ model.name }}">{{ model.name }}</option>
+    {% endfor %}
+  </select>
   <label for="color">Color</label>
   <select name="color">
-    {% for o in data %}
-    <option value="{{ o.name }}">{{ o.name }}</option>
+    {% for color in dataColor %}
+    <option value="{{ color.name }}">{{ color.name }}</option>
     {% endfor %}
   </select>
   <input type="hidden" name="client_id" id="client_id" value="{{ id }}" required>

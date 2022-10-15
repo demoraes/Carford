@@ -9,21 +9,23 @@ from flaskr.db import get_db
 
 bp = Blueprint('client', __name__)
 
-
 @bp.route('/')
 def index():
     db = get_db()
     clients_cars = db.execute(
         'SELECT * FROM client',
     ).fetchall()
+    clients_not_cars = db.execute(
+        'SELECT cl.id, ca.client_id FROM client cl LEFT JOIN car ca ON cl.id = ca.client_id WHERE ca.client_id is null',
+    ).fetchone()
 
-    return render_template('index.html', clients_cars=clients_cars)
-
+    return render_template('index.html', clients_cars=clients_cars, clients_not_cars=clients_not_cars)
 
 @bp.route('/<int:id>/view', methods=('GET', 'POST'))
 @login_required
 def view(id):
-    cars = get_db().execute('SELECT model, color FROM car WHERE client_id = ?', (id,)).fetchall()
+    cars = get_db().execute(
+        'SELECT model, color FROM car WHERE client_id = ?', (id,)).fetchall()
 
     name = request.args.get('name')
 

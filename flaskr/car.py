@@ -27,7 +27,7 @@ def create():
     cars = get_cars(id)
 
     if request.method == 'POST':
-        model = request.form['model']
+        model = request.form.get('model')
         color = request.form.get('color')
         client_id = request.form['client_id']
         error = None
@@ -50,7 +50,7 @@ def create():
             db.commit()
             return redirect(url_for('car.index'))
 
-    return render_template('car/create.html', id=id, data=[{'name':'yellow'}, {'name':'blue'}, {'name':'Grey'}])
+    return render_template('car/create.html', id=id, dataColor=[{'name':'yellow'}, {'name':'blue'}, {'name':'Grey'}], dataModel=[{'name':'hatch'}, {'name':'sedan '}, {'name':'convertible'}])
 
 
 def get_cars(id):

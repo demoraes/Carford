@@ -10,13 +10,11 @@
         <tr>
             <th>Modelo</th>
             <th>Cor</th>
-            <th>Editar</th>
         </tr>
         {% for car in cars %}
         <tr>
             <td>{{car['model']}}</td>
-            <td>{{car['color']}}</td>
-            <td>Ação</td>     
+            <td>{{car['color']}}</td>   
         </tr>
         {% endfor %}
     </table>

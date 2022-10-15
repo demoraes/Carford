@@ -18,9 +18,18 @@
     <div>
       <p>ID Client: {{i['id']}}</p>
       <p>Name: {{ i['name'] }}</p>
+      {% if g.user %}
       <a href="{{ url_for('client.update', id=i['id'])}}">Edit Name</a>
       <a href="{{ url_for('client.view', name=i['name'], id=i['id'])}}">View Cars</a>
       <a href="{{ url_for('car.create', id=i['id'])}}">New Car</a>
+      {% endif %}
+      {% if clients_not_cars%}
+      {% for not_cars in clients_not_cars %}
+      {% if not_cars == i['id']%}
+      <p style="color: red;">Potential customer</p>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
     </div>
   </header>
 </article>
