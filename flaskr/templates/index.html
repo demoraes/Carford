@@ -25,9 +25,11 @@
       {% endif %}
       {% if clients_not_cars%}
       {% for not_cars in clients_not_cars %}
-      {% if not_cars == i['id']%}
+      {% for cars in not_cars %}
+      {% if cars == i['id']%}
       <p style="color: red;">Potential customer</p>
       {% endif %}
+      {% endfor %}
       {% endfor %}
       {% endif %}
     </div>

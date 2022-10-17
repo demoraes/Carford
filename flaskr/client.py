@@ -17,7 +17,7 @@ def index():
     ).fetchall()
     clients_not_cars = db.execute(
         'SELECT cl.id, ca.client_id FROM client cl LEFT JOIN car ca ON cl.id = ca.client_id WHERE ca.client_id is null',
-    ).fetchone()
+    ).fetchall()
 
     return render_template('index.html', clients_cars=clients_cars, clients_not_cars=clients_not_cars)
 
