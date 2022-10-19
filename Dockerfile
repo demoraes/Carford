@@ -13,6 +13,4 @@ RUN flask --app flaskr init-db
 
 ENTRYPOINT ["flask"]
 
-EXPOSE 5000
-
 CMD ["--app", "flaskr", "--debug", "run", "--host=0.0.0.0"]
