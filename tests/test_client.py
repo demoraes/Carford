@@ -55,11 +55,7 @@ def test_update(client, auth, app):
         client = db.execute('SELECT * FROM client WHERE id = 1').fetchone()
         assert client['name'] == 'testechange'
 
-
-@pytest.mark.parametrize('path', (
-    '/createClient',
-    '/1/update',
-))
+@pytest.mark.parametrize("path", ("/create", "/1/update"))
 def test_create_update_validate(client, auth, path):
     auth.login()
     response = client.post(path, data={'name':''})
