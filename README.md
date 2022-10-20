@@ -42,7 +42,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ### ⚙ Como usar o sistema
 
- Apos logar na aplicação você verá um botão<b>New Client</b> onde será possível cadastrar os clientes. Após o primeiro cadastro aparecera 3 outros botoes, sendo eles, Edit Name, View Cars, New Car, sendo respectivamente para editar o nome do cliente, visualizar os carros cadastrados e por último cadastra um carro para o cliente, aquele que estiver marcado como Potential customer significa que ainda não tem nenhum carro cadastrado.
+ Apos logar na aplicação você verá um botão <b>New Client</b> onde será possível cadastrar os clientes. Após o primeiro cadastro aparecera 3 outros botoes, sendo eles, <b>Edit Name</b>, <b>View Cars</b>, <b>New Car</b>, sendo respectivamente para editar o nome do cliente, visualizar os carros cadastrados e por último cadastrar um carro para o cliente, aquele que estiver marcado como <b>Potential customer</b> significa que ainda não tem nenhum carro cadastrado.
 
 
 
