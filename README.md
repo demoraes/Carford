@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
 ## Tecnologias
@@ -38,8 +38,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Rode o comando <b> docker-compose up -d </b> no diretório onde você clonou o repositório
 - Acesse o endereço <b> http://127.0.0.1:5000/ </b>
 
-  <b>Primeiramente registre seu usuário administrador e depois log na aplicação</b>
+- <b>Primeiramente registre seu usuário administrador e depois log na aplicação</b>
 
+### ⚙ Como usar o sistema
+
+ Apos logar na aplicação você verá um botão<b>New Client</b> onde será possível cadastrar os clientes. Após o primeiro cadastro aparecera 3 outros botoes, sendo eles, Edit Name, View Cars, New Car, sendo respectivamente para editar o nome do cliente, visualizar os carros cadastrados e por último cadastra um carro para o cliente, aquele que estiver marcado como Potential customer significa que ainda não tem nenhum carro cadastrado.
 
 
 
